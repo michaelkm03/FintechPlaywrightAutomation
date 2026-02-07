@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthTech Pro - Investment & Retirement Planning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar {
+            background: #1e40af;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+        
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .top-links a:hover {
+            opacity: 0.8;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-size: 15px;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .btn-login {
+            background: white;
+            color: #1e3a8a;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .btn-login:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1e3a8a;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 60px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 42px;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #1e3a8a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+        
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* Account Types */
+        .account-types {
+            background: #f9fafb;
+            padding: 80px 20px;
+        }
+        
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .account-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .account-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .account-card h3 {
+            font-size: 24px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+        
+        .account-card .price {
+            font-size: 18px;
+            color: #10b981;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .account-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .account-card li {
+            padding: 10px 0;
+            color: #6b7280;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .account-card li:before {
+            content: "✓ ";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Calculator */
+        .calculator {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .calc-form {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .calc-result {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .calc-result.show {
+            display: block;
+        }
+        
+        .calc-result h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .calc-result .amount {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid #3b82f6;
+            text-align: center;
+            color: #cbd5e1;
+        }
+        
+        /* Quick Links Bar */
+        .quick-links {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+        
+        .quick-links p {
+            margin: 0;
+            color: #856404;
+        }
+        
+        .quick-links a {
+            color: #1e3a8a;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .quick-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div>📞 Customer Support: 1-800-WEALTH-1 | Monday-Friday 8AM-8PM ET</div>
+            <div class="top-links">
+                <a href="#security">Security Center</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#careers">Careers</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">W</div>
+                <span>WealthTech Pro</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="accounts.html">Accounts</a></li>
+                <li><a href="trading.html">Trading</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#planning">Planning</a></li>
+                <li><a href="#" class="btn-login" id="login-btn">Log In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Invest in Your Future with Confidence</h1>
+        <p>Professional investment management and retirement planning tools trusted by millions</p>
+        <div class="cta-buttons">
+            <a href="accounts.html" class="btn btn-primary">Open an Account</a>
+            <a href="trading.html" class="btn btn-secondary">Explore Trading</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>$4.2T</h3>
+                <p>Assets Under Management</p>
+            </div>
+            <div class="stat-item">
+                <h3>40M+</h3>
+                <p>Client Accounts</p>
+            </div>
+            <div class="stat-item">
+                <h3>75+</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.8★</h3>
+                <p>Customer Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Alert -->
+    <div class="container">
+        <div class="quick-links">
+            <p>🎯 <strong>New to investing?</strong> Check out our <a href="accounts.html">account options</a> or start <a href="trading.html">paper trading</a> to practice risk-free!</p>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Why Choose WealthTech Pro?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Advanced Research Tools</h3>
+                <p>Access institutional-grade research, real-time market data, and comprehensive analytics to make informed investment decisions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Bank-Level Security</h3>
+                <p>Your investments are protected with 256-bit encryption, two-factor authentication, and SIPC insurance up to $500,000.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Retirement Planning</h3>
+                <p>Plan for your future with our IRA options, 401(k) rollovers, and personalized retirement calculators.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Trading</h3>
+                <p>Trade on the go with our award-winning mobile app. Available for iOS and Android.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3>Education Center</h3>
+                <p>Learn investing basics with our comprehensive library of articles, videos, and webinars.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Expert Support</h3>
+                <p>Get help when you need it from our team of financial professionals available 24/7.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Types -->
+    <section class="account-types">
+        <h2 class="section-title">Choose the Right Account for You</h2>
+        <div class="account-grid">
+            <div class="account-card">
+                <h3>Brokerage Account</h3>
+                <div class="price">$0 to open</div>
+                <ul>
+                    <li>No minimum balance</li>
+                    <li>$0 commission on stocks</li>
+                    <li>Access to stocks, ETFs, options</li>
+                    <li>Real-time market data</li>
+                    <li>Research & planning tools</li>
+                </ul>
+                <a href="accounts.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="account-card">
+                <h3>Traditional IRA</h3>
+                <div class="price">Tax-deductible</div>
+                <ul>
+                    <li>Tax-deferred growth</li>
+                    <li>Potential tax deduction</li>
+                    <li>Wide range of investments</li>
+                    <li>Contribution limits apply</li>
+                    <li>Rollover options available</li>
+                </ul>
+                <a href="accounts.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="account-card">
+                <h3>Roth IRA</h3>
+                <div class="price">Tax-free growth</div>
+                <ul>
+                    <li>Tax-free withdrawals in retirement</li>
+                    <li>No required distributions</li>
+                    <li>Flexible contribution options</li>
+                    <li>Estate planning benefits</li>
+                    <li>Income limits apply</li>
+                </ul>
+                <a href="accounts.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="account-card">
+                <h3>Managed Portfolio</h3>
+                <div class="price">0.35% advisory fee</div>
+                <ul>
+                    <li>Professional management</li>
+                    <li>Personalized strategy</li>
+                    <li>Automatic rebalancing</li>
+                    <li>Tax-loss harvesting</li>
+                    <li>$25,000 minimum</li>
+                </ul>
+                <a href="accounts.html" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Retirement Calculator -->
+    <section class="calculator">
+        <h2 class="section-title">Retirement Savings Calculator</h2>
+        <div class="calculator-container">
+            <form class="calc-form" id="calc-form">
+                <div class="form-group">
+                    <label for="current-age">Current Age</label>
+                    <input type="number" id="current-age" min="18" max="100" value="30" required>
+                </div>
+                <div class="form-group">
+                    <label for="retirement-age">Retirement Age</label>
+                    <input type="number" id="retirement-age" min="50" max="100" value="65" required>
+                </div>
+                <div class="form-group">
+                    <label for="current-savings">Current Savings ($)</label>
+                    <input type="number" id="current-savings" min="0" value="50000" required>
+                </div>
+                <div class="form-group">
+                    <label for="monthly-contribution">Monthly Contribution ($)</label>
+                    <input type="number" id="monthly-contribution" min="0" value="500" required>
+                </div>
+                <div class="form-group">
+                    <label for="return-rate">Expected Annual Return (%)</label>
+                    <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate</button>
+            </form>
+            <div class="calc-result" id="calc-result">
+                <h3>Projected Retirement Savings</h3>
+                <div class="amount" id="result-amount">$0</div>
+                <p id="result-details"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About WealthTech Pro</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#news">Newsroom</a></li>
+                    <li><a href="#investors">Investor Relations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="accounts.html">Accounts</a></li>
+                    <li><a href="trading.html">Trading</a></li>
+                    <li><a href="#retirement">Retirement</a></li>
+                    <li><a href="#advisory">Advisory Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#security">Security</a></li>
+                    <li><a href="#forms">Forms & Applications</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#disclosures">Disclosures</a></li>
+                    <li><a href="#accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 WealthTech Pro. All rights reserved. | Securities products offered by WealthTech Securities, LLC, Member FINRA/SIPC.</p>
+            <p style="margin-top: 10px; font-size: 12px;">Investment and insurance products are not FDIC insured, are not bank guaranteed, and may lose value.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Login button
+        document.getElementById('login-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Login functionality would redirect to secure login page');
+        });
+
+        // Retirement Calculator
+        document.getElementById('calc-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentAge = parseInt(document.getElementById('current-age').value);
+            const retirementAge = parseInt(document.getElementById('retirement-age').value);
+            const currentSavings = parseFloat(document.getElementById('current-savings').value);
+            const monthlyContribution = parseFloat(document.getElementById('monthly-contribution').value);
+            const returnRate = parseFloat(document.getElementById('return-rate').value) / 100;
+            
+            const years = retirementAge - currentAge;
+            const months = years * 12;
+            const monthlyRate = returnRate / 12;
+            
+            // Future value calculation
+            const futureValueCurrent = currentSavings * Math.pow(1 + monthlyRate, months);
+            const futureValueContributions = monthlyContribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+            const totalSavings = futureValueCurrent + futureValueContributions;
+            
+            // Display result
+            document.getElementById('result-amount').textContent = 
+                '$' + totalSavings.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('result-details').textContent = 
+                `By age ${retirementAge}, with a ${returnRate * 100}% annual return over ${years} years`;
+            document.getElementById('calc-result').classList.add('show');
+        });
+    </script>
+</body>
+</html>

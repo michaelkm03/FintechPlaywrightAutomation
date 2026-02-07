@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open an Account - WealthTech Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+        
+        /* Progress Steps */
+        .progress-steps {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            position: relative;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            top: 20px;
+            z-index: 0;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .step.active .step-number {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: #10b981;
+            color: white;
+        }
+        
+        .step-label {
+            font-weight: 600;
+            color: #6b7280;
+        }
+        
+        .step.active .step-label {
+            color: #1e3a8a;
+        }
+        
+        /* Account Selection */
+        .account-selection {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .account-selection h2 {
+            color: #1e3a8a;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .account-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .account-option {
+            border: 2px solid #e5e7eb;
+            padding: 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .account-option:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+        
+        .account-option.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .account-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .account-option h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .account-option p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Application Form */
+        .application-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .application-form.active {
+            display: block;
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .form-section h3 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .required {
+            color: #ef4444;
+        }
+        
+        .help-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+        
+        /* Checkbox Group */
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            margin-bottom: 12px;
+        }
+        
+        .checkbox-item input {
+            margin-right: 8px;
+        }
+        
+        .checkbox-item label {
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        /* Success Message */
+        .success-message {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-message h2 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            color: #047857;
+            margin-bottom: 25px;
+        }
+        
+        .application-number {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .security-badge .icon {
+            font-size: 32px;
+        }
+        
+        .security-badge p {
+            color: #166534;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">W</div>
+                <span>WealthTech Pro</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="accounts.html">Accounts</a></li>
+                <li><a href="trading.html">Trading</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Open Your Account</h1>
+        <p>Start investing in minutes with our simple online application</p>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Security Badge -->
+        <div class="security-badge">
+            <div class="icon">🔒</div>
+            <div>
+                <strong>Your information is secure</strong>
+                <p>We use 256-bit encryption and never sell your personal data. SIPC member.</p>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps" id="progress-steps">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-label">Choose Account</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">Personal Info</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Review</div>
+            </div>
+        </div>
+
+        <!-- Account Selection -->
+        <div class="account-selection" id="account-selection">
+            <h2>Select Account Type</h2>
+            <div class="account-types">
+                <div class="account-option" onclick="selectAccount('brokerage')">
+                    <input type="radio" name="account-type" id="brokerage" value="brokerage">
+                    <h3>Individual Brokerage</h3>
+                    <p>Invest in stocks, ETFs, and options with no minimum balance required.</p>
+                </div>
+                <div class="account-option" onclick="selectAccount('traditional-ira')">
+                    <input type="radio" name="account-type" id="traditional-ira" value="traditional-ira">
+                    <h3>Traditional IRA</h3>
+                    <p>Tax-deferred retirement account with potential tax deductions.</p>
+                </div>
+                <div class="account-option" onclick="selectAccount('roth-ira')">
+                    <input type="radio" name="account-type" id="roth-ira" value="roth-ira">
+                    <h3>Roth IRA</h3>
+                    <p>Tax-free retirement growth for qualified withdrawals.</p>
+                </div>
+                <div class="account-option" onclick="selectAccount('joint')">
+                    <input type="radio" name="account-type" id="joint" value="joint">
+                    <h3>Joint Account</h3>
+                    <p>Share an account with another person with equal access.</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="continueToForm()" id="continue-btn" disabled>Continue</button>
+        </div>
+
+        <!-- Application Form -->
+        <div class="application-form" id="application-form">
+            <h2>Account Application</h2>
+            <form id="account-form">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Social Security Number <span class="required">*</span></label>
+                            <input type="text" id="ssn" placeholder="XXX-XX-XXXX" maxlength="11" required>
+                            <div class="help-text">We need this for tax reporting purposes</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="(XXX) XXX-XXXX" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Information -->
+                <div class="form-section">
+                    <h3>Address</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Street Address <span class="required">*</span></label>
+                            <input type="text" id="street" required>
+                        </div>
+                        <div class="form-group">
+                            <label>City <span class="required">*</span></label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>State <span class="required">*</span></label>
+                            <select id="state" required>
+                                <option value="">Select State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="CA">California</option>
+                                <option value="FL">Florida</option>
+                                <option value="NY">New York</option>
+                                <option value="TX">Texas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ZIP Code <span class="required">*</span></label>
+                            <input type="text" id="zip" maxlength="5" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employment Information -->
+                <div class="form-section">
+                    <h3>Employment</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Employment Status <span class="required">*</span></label>
+                            <select id="employment" required>
+                                <option value="">Select Status</option>
+                                <option value="employed">Employed</option>
+                                <option value="self-employed">Self-Employed</option>
+                                <option value="retired">Retired</option>
+                                <option value="student">Student</option>
+                                <option value="unemployed">Unemployed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Annual Income <span class="required">*</span></label>
+                            <select id="income" required>
+                                <option value="">Select Range</option>
+                                <option value="0-25k">Under $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k-100k">$50,000 - $100,000</option>
+                                <option value="100k-250k">$100,000 - $250,000</option>
+                                <option value="250k+">Over $250,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Net Worth <span class="required">*</span></label>
+                            <select id="net-worth" required>
+                                <option value="">Select Range</option>
+                                <option value="0-50k">Under $50,000</option>
+                                <option value="50k-100k">$50,000 - $100,000</option>
+                                <option value="100k-250k">$100,000 - $250,000</option>
+                                <option value="250k-1m">$250,000 - $1,000,000</option>
+                                <option value="1m+">Over $1,000,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Investment Experience</label>
+                            <select id="experience">
+                                <option value="none">None</option>
+                                <option value="limited">Limited (1-2 years)</option>
+                                <option value="good">Good (3-5 years)</option>
+                                <option value="extensive">Extensive (5+ years)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regulatory Questions -->
+                <div class="form-section">
+                    <h3>Regulatory Information</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="broker-affiliated">
+                            <label for="broker-affiliated">I am affiliated with a broker-dealer or registered exchange</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="politically-exposed">
+                            <label for="politically-exposed">I am a politically exposed person or public official</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="control-person">
+                            <label for="control-person">I am a director or 10% shareholder of a publicly traded company</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agreements -->
+                <div class="form-section">
+                    <h3>Agreements</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the <a href="#terms">Terms and Conditions</a> <span class="required">*</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="privacy" required>
+                            <label for="privacy">I have read the <a href="#privacy">Privacy Policy</a> <span class="required">*</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disclosures" required>
+                            <label for="disclosures">I acknowledge receipt of all required <a href="#disclosures">Disclosures</a> <span class="required">*</span></label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="electronic-delivery">
+                            <label for="electronic-delivery">I consent to electronic delivery of statements and confirmations</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="backToSelection()">Back</button>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="success-message">
+            <h2>✅ Application Submitted Successfully!</h2>
+            <p>Thank you for choosing WealthTech Pro. Your account application has been received.</p>
+            <div class="application-number" id="app-number">Application #: WT-2024-XXXXXX</div>
+            <p>We'll review your application and send you an email within 1-2 business days with next steps.</p>
+            <p><strong>What happens next?</strong></p>
+            <ul style="text-align: left; max-width: 500px; margin: 20px auto; color: #047857;">
+                <li style="margin-bottom: 10px;">✓ Identity verification (may require additional documents)</li>
+                <li style="margin-bottom: 10px;">✓ Account approval notification via email</li>
+                <li style="margin-bottom: 10px;">✓ Fund your account and start investing</li>
+            </ul>
+            <div style="margin-top: 30px;">
+                <a href="index.html" class="btn btn-primary">Return to Home</a>
+                <a href="trading.html" class="btn btn-secondary">Explore Trading</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAccountType = null;
+
+        function selectAccount(type) {
+            // Remove previous selection
+            document.querySelectorAll('.account-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Select clicked option
+            const selected = document.getElementById(type);
+            selected.checked = true;
+            selected.closest('.account-option').classList.add('selected');
+            selectedAccountType = type;
+            
+            // Enable continue button
+            document.getElementById('continue-btn').disabled = false;
+        }
+
+        function continueToForm() {
+            if (!selectedAccountType) return;
+            
+            // Update progress
+            document.querySelectorAll('.step')[0].classList.remove('active');
+            document.querySelectorAll('.step')[0].classList.add('completed');
+            document.querySelectorAll('.step')[1].classList.add('active');
+            
+            // Show form
+            document.getElementById('account-selection').style.display = 'none';
+            document.getElementById('application-form').classList.add('active');
+        }
+
+        function backToSelection() {
+            // Update progress
+            document.querySelectorAll('.step')[1].classList.remove('active');
+            document.querySelectorAll('.step')[0].classList.add('active');
+            document.querySelectorAll('.step')[0].classList.remove('completed');
+            
+            // Show selection
+            document.getElementById('application-form').classList.remove('active');
+            document.getElementById('account-selection').style.display = 'block';
+        }
+
+        // Form submission
+        document.getElementById('account-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate application number
+            const appNumber = 'WT-2024-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('app-number').textContent = 'Application #: ' + appNumber;
+            
+            // Update progress
+            document.querySelectorAll('.step').forEach(step => step.classList.add('completed'));
+            
+            // Show success message
+            document.getElementById('application-form').style.display = 'none';
+            document.getElementById('progress-steps').style.display = 'none';
+            document.getElementById('success-message').classList.add('show');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // SSN formatting
+        document.getElementById('ssn').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 3) {
+                value = value.substring(0, 3) + '-' + value.substring(3);
+            }
+            if (value.length >= 6) {
+                value = value.substring(0, 6) + '-' + value.substring(6, 10);
+            }
+            e.target.value = value;
+        });
+
+        // Phone formatting
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 3) {
+                value = '(' + value.substring(0, 3) + ') ' + value.substring(3);
+            }
+            if (value.length >= 9) {
+                value = value.substring(0, 9) + '-' + value.substring(9, 13);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="WealthTech Pro Test Suite" parallel="tests" thread-count="2" verbose="1">
+    
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    
+    <!-- WealthTech Pro Homepage Tests -->
+    <test name="Homepage Functionality Tests">
+        <classes>
+            <class name="com.testframework.tests.wealthtech.HomePageFunctionalityTest"/>
+        </classes>
+    </test>
+    
+    <!-- WealthTech Pro Account Opening Tests -->
+    <test name="Account Opening Workflow Tests">
+        <classes>
+            <class name="com.testframework.tests.wealthtech.AccountOpeningWorkflowTest"/>
+        </classes>
+    </test>
+    
+    <!-- WealthTech Pro Trading Platform Tests -->
+    <test name="Trading Platform Functionality Tests">
+        <classes>
+            <class name="com.testframework.tests.wealthtech.TradingPlatformFunctionalityTest"/>
+        </classes>
+    </test>
+    
+</suite>
