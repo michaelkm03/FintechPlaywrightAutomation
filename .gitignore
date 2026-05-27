@@ -42,3 +42,6 @@ traces/
 
 # Playwright
 playwright-report/
+
+# Allure CLI binaries (auto-downloaded at runtime)
+.allure/
