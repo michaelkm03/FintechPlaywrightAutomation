@@ -6,8 +6,8 @@ package com.testframework.utils;
  */
 public class TestConfig {
     
-    // Environment URLs
-    public static final String LOCAL_BASE_URL = "http://localhost:8080";
+    // Environment URLs — LOCAL_BASE_URL can be overridden via -Dbase.url=...
+    public static final String LOCAL_BASE_URL = System.getProperty("base.url", "http://localhost:8080");
     public static final String PRODUCTION_BASE_URL = "https://wealthtechpro.com";
     
     // Current environment (can be overridden via system property)

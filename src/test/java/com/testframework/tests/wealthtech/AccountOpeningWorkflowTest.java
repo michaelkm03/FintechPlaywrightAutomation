@@ -225,16 +225,14 @@ public class AccountOpeningWorkflowTest extends BaseTest {
     @Story("Form Validation - Required Fields")
     public void testContinueButtonDisabledUntilSelection() {
         // Initially Continue button should be disabled
-        boolean isEnabled = !page.locator("#continue-btn").getAttribute("disabled").equals("true");
-        Assert.assertFalse(isEnabled, 
+        Assert.assertTrue(page.locator("#continue-btn").isDisabled(),
             "Continue button should be disabled when no account type is selected");
-        
+
         // Select an account type
         accountOpeningPage.selectAccountType("brokerage");
-        
+
         // Now button should be enabled
-        isEnabled = !page.locator("#continue-btn").getAttribute("disabled").equals("true");
-        Assert.assertTrue(isEnabled, 
+        Assert.assertTrue(page.locator("#continue-btn").isEnabled(),
             "Continue button should be enabled after account type selection");
         
         System.out.println("✓ Continue button validation working correctly");

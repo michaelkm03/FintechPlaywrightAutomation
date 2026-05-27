@@ -15,8 +15,8 @@ import java.nio.file.Paths;
  * All test classes should extend this class to inherit common functionality.
  */
 public class BaseTest {
-    protected static Playwright playwright;
-    protected static Browser browser;
+    protected Playwright playwright;
+    protected Browser browser;
     protected BrowserContext browserContext;
     protected Page page;
 

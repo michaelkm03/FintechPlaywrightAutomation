@@ -20,7 +20,7 @@ public class WealthTechHomePage extends BasePage {
     // Locators - Hero Section
     private static final String HERO_TITLE = ".hero h1";
     private static final String HERO_SUBTITLE = ".hero p";
-    private static final String CTA_OPEN_ACCOUNT = "a[href='accounts.html'].btn-primary";
+    private static final String CTA_OPEN_ACCOUNT = ".hero a[href='accounts.html'].btn-primary";
     private static final String CTA_EXPLORE_TRADING = "a[href='trading.html'].btn-secondary";
     
     // Locators - Stats Section
