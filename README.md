@@ -1,5 +1,7 @@
 # WealthTech Pro - Test Automation Framework
 
+![CI](https://github.com/michaelkm03/FintechPlaywrightAutomation/actions/workflows/ci.yml/badge.svg)
+
 A comprehensive Playwright + TestNG automation framework for testing the WealthTech Pro financial technology platform. Built following industry best practices and Page Object Model design pattern.
 
 ## 🎯 Project Overview
@@ -7,8 +9,9 @@ A comprehensive Playwright + TestNG automation framework for testing the WealthT
 This framework provides end-to-end test automation for WealthTech Pro, a simulated financial services platform similar to Fidelity or E*TRADE. The test suite covers:
 
 - **Homepage**: Landing page, retirement calculator, company statistics
-- **Account Opening**: Multi-step account application workflow  
+- **Account Opening**: Multi-step account application workflow
 - **Trading Platform**: Stock quotes, watchlist, order execution
+- **API Layer**: HTTP endpoint validation using Playwright's `APIRequestContext`
 
 ## 📋 Prerequisites
 
@@ -90,11 +93,15 @@ playwright-testng-framework/
 │   │       ├── TestConfig.java            # Centralized configuration
 │   │       └── TestUtils.java             # Utility methods
 │   │
-│   └── test/java/com/testframework/tests/wealthtech/
-│       ├── HomePageFunctionalityTest.java
-│       ├── AccountOpeningWorkflowTest.java
-│       └── TradingPlatformFunctionalityTest.java
+│   └── test/java/com/testframework/tests/
+│       ├── wealthtech/
+│       │   ├── HomePageFunctionalityTest.java
+│       │   ├── AccountOpeningWorkflowTest.java
+│       │   └── TradingPlatformFunctionalityTest.java
+│       └── api/
+│           └── FintechApiTest.java        # HTTP API / endpoint validation tests
 │
+├── .github/workflows/ci.yml              # GitHub Actions CI/CD pipeline
 ├── testng.xml                             # TestNG suite configuration
 ├── pom.xml                                # Maven dependencies
 ├── start-server.bat                       # Windows server launcher
@@ -137,12 +144,29 @@ playwright-testng-framework/
 - ✅ Limit price field conditional display
 - ✅ Time-in-force options (DAY and GTC)
 
+### API Endpoint Tests (8 tests)
+- ✅ Homepage returns HTTP 200
+- ✅ Accounts page returns HTTP 200
+- ✅ Trading page returns HTTP 200
+- ✅ Homepage response contains expected branding
+- ✅ Accounts page includes form markup
+- ✅ Trading page includes order entry markup
+- ✅ Homepage returns HTML content-type header
+- ✅ NEGATIVE: Non-existent page returns error (non-200)
+
 ## 🎯 Key Features
 
 ### Page Object Model (POM)
 - Clean separation between test logic and page interactions
 - Reusable page methods with meaningful names
 - Centralized element locators
+
+### CI/CD Integration
+- **GitHub Actions** pipeline runs on every push and pull request
+- Automatically starts the Python web server before tests execute
+- Uploads Allure results, Surefire reports, screenshots, and traces as artifacts
+- Tests run in headless mode on `ubuntu-latest`
+- Failed-test artifacts (screenshots + Playwright traces) uploaded automatically
 
 ### Best Practices Implementation
 - **Explicit waits** instead of Thread.sleep()
@@ -152,6 +176,7 @@ playwright-testng-framework/
 - **Allure reporting** integration for detailed test reports
 - **Screenshot capture** on test failures
 - **Playwright trace files** for debugging
+- **API testing** via Playwright's `APIRequestContext` (status codes, headers, body content)
 
 ### Test Data Management
 - Centralized configuration in `TestConfig.java`
